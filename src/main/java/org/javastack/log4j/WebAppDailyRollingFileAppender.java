@@ -41,16 +41,6 @@ public class WebAppDailyRollingFileAppender extends DailyRollingFileAppender {
 		return sb.toString();
 	}
 
-	public static void main(String[] args) {
-		System.out.println(mapFileName("${catalina.base}/logs/tomcat.log"));
-		System.out.println(mapFileName("${catalina.base}/logs/tomcat.{context.name}.log"));
-		System.out.println(mapFileName("${catalina.base}/logs/tomcat.{context.name:default}.log"));
-		System.out.println(mapFileName("{context.name:default}.{context.name}.log"));
-		System.out.println(mapFileName("{context.name}.{context.name:default}.log"));
-		System.out.println(mapFileName("{context.name.context.name:default}"));
-		System.out.println(mapFileName("{context.name}"));
-	}
-
 	private final static String getContextName() {
 		final ClassLoader cl = WebAppDailyRollingFileAppender.class.getClassLoader();
 		if (cl instanceof WebappClassLoaderBase) {
