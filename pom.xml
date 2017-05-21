@@ -4,7 +4,7 @@
 
 	<groupId>org.javastack</groupId>
 	<artifactId>log4j-tomcat</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>Log4J-Tomcat</description>
 
 	<dependencies>

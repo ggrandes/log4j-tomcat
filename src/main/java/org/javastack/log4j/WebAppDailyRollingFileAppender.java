@@ -12,8 +12,8 @@ public class WebAppDailyRollingFileAppender extends DailyRollingFileAppender {
 	public WebAppDailyRollingFileAppender() {
 	}
 
-	public WebAppDailyRollingFileAppender(final Layout layout, final String filename, final String datePattern)
-			throws IOException {
+	public WebAppDailyRollingFileAppender(final Layout layout, final String filename,
+			final String datePattern) throws IOException {
 		super(layout, mapFileName(filename), datePattern);
 	}
 
@@ -43,18 +43,22 @@ public class WebAppDailyRollingFileAppender extends DailyRollingFileAppender {
 
 	private final static String getContextName() {
 		final ClassLoader cl = WebAppDailyRollingFileAppender.class.getClassLoader();
-		if (cl instanceof WebappClassLoaderBase) {
-			final WebappClassLoaderBase wcl = ((WebappClassLoaderBase) cl);
-			String cn = wcl.getContextName();
-			if (cn.isEmpty()) {
-				return "ROOT";
-			} else {
-				if (cn.charAt(0) == '/') {
-					cn = cn.substring(1);
+		try {
+			if (cl instanceof WebappClassLoaderBase) {
+				@SuppressWarnings("resource")
+				final WebappClassLoaderBase wcl = ((WebappClassLoaderBase) cl);
+				String cn = wcl.getContextName();
+				if (cn.isEmpty()) {
+					return "ROOT";
+				} else {
+					if (cn.charAt(0) == '/') {
+						cn = cn.substring(1);
+					}
+					cn = cn.replace('/', '#');
+					return cn;
 				}
-				cn = cn.replace('/', '#');
-				return cn;
 			}
+		} catch (Throwable t) {
 		}
 		return null;
 	}
