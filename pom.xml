@@ -4,7 +4,7 @@
 
 	<groupId>org.javastack</groupId>
 	<artifactId>log4j-tomcat</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<description>Log4J-Tomcat</description>
 
 	<dependencies>
@@ -19,14 +19,14 @@
 		<dependency>
 			<groupId>org.apache.tomcat</groupId>
 			<artifactId>tomcat-catalina</artifactId>
-			<version>7.0.70</version>
+			<version>7.0.109</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- Log4J -->
+		<!-- Log4J 1.2 replacement -->
 		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
+			<groupId>ch.qos.reload4j</groupId>
+			<artifactId>reload4j</artifactId>
+			<version>1.2.19</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
@@ -105,7 +105,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.3</version>
+				<version>3.2.0</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -123,6 +123,8 @@
 						</tag>
 					</tags>
 					<excludePackageNames>*.sandbox.*</excludePackageNames>
+					<!-- FIXME: Dont Break -->
+					<doclint>none</doclint>
 				</configuration>
 			</plugin>
 			<!-- GPG Signed Components for Maven Central -->
